@@ -22,25 +22,21 @@ int flags, int width, int precision, int size)
 	return (handle_write_char(c, buffer, flags, width, precision, size));
 }
 
-/******************** PRINT A STRING ********************/
-
 /**
- * print_string - Print a string
- *
+ * print_string - Print a str
  * @types: List of arguments
  * @buffer: Buffer array to handle print
  * @flags: Flag to calculate active formatting options
  * @width: Width specifier
  * @precision: Precision specification
  * @size: Size specifier
- *
  * Return: Number of characters printed
  */
 int print_string(va_list types, char buffer[], int flags,
 int width, int precision, int size)
 {
-	int length = 0, i;
-	char *str = va_arg(types, char *);
+	int len = 0, i;
+	char *s = va_arg(types, char *);
 
 	UNUSED(buffer);
 	UNUSED(flags);
@@ -48,51 +44,48 @@ int width, int precision, int size)
 	UNUSED(precision);
 	UNUSED(size);
 
-	if (str == NULL)
+	if (s == NULL)
 	{
-		str = "(null)";
+		s = "(null)";
 	if (precision >= 6)
-		str = "      ";
+		s = "      ";
 	}
 
-	while (str[length] != '\0')
-	length++;
+	while (s[len] != '\0')
+	len++;
 
-	if (precision >= 0 && precision < length)
-	length = precision;
+	if (precision >= 0 && precision < len)
+	len = precision;
 
-	if (width > length)
+	if (width > len)
 	{
 	if (flags & F_MINUS)
 	{
-		write(1, &str[0], length);
-	for (i = width - length; i > 0; i--)
-			write(1, " ", 1);
+		wr(1, &s[0], len);
+
+		for (i = width - len; i > 0; i--)
+			wr(1, " ", 1);
 			return (width);
 	}
 	else
 	{
-	for (i = width - length; i > 0; i--)
-			write(1, " ", 1);
-			write(1, &str[0], length);
+		for (i = width - len; i > 0; i--)
+			wr(1, " ", 1);
+			wr(1, &s[0], len);
 			return (width);
 		}
 	}
-	return (write(1, str, length));
+		return (wr(1, s, len));
 }
-
-/******************** PRINT PERCENT SIGN ********************/
 
 /**
  * print_percent - Print a percent sign
- *
  * @types: List of arguments
  * @buffer: Buffer array to handle print
  * @flags: Flag to calculate active formatting options
  * @width: Width specifier
  * @precision: Precision specification
  * @size: Size specifier
- *
  * Return: Number of characters printed
  */
 int print_percent(va_list types, char buffer[], int flags,
@@ -108,18 +101,14 @@ int width, int precision, int size)
 	return (write(1, "%%", 1));
 }
 
-/******************** PRINT INT ********************/
-
 /**
  * print_int - Print an integer
- *
  * @types: List of arguments
  * @buffer: Buffer array to handle print
  * @flags: Flag to calculate active formatting options
  * @width: Width specifier
  * @precision: Precision specification
  * @size: Size specifier
- *
  * Return: Number of characters printed
  */
 int print_int(va_list types, char buffer[], int flags,
@@ -154,18 +143,14 @@ int width, int precision, int size)
 	return (write_number(is_negative, i, buffer, flags, width, precision, size));
 }
 
-/******************** PRINT BINARY ********************/
-
 /**
  * print_binary - Print an unsigned number in binary format
- *
  * @types: List of arguments
  * @buffer: Buffer array to handle print
  * @flags: Flag to calculate active formatting options
  * @width: Width specifier
  * @precision: Precision specification
  * @size: Size specifier
- *
  * Return: Number of characters printed
  */
 int print_binary(va_list types, char buffer[], int flags,
