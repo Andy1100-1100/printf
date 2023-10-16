@@ -1,2 +1,3 @@
 This is Partner2
-This is Partner 1
+
+This is partner1
