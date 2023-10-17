@@ -28,7 +28,7 @@ int width, int precision, int size)
 	UNUSED(size);
 
 	if (addrs == NULL)
-	return (write 1, "(nil)", 5);
+	return (write(1, "(nil)", 5));
 
 	buffer[BUFF_SIZE - 1] = '\0';
 	UNUSED(precision);
@@ -51,8 +51,8 @@ int width, int precision, int size)
 
 	ind++;
 
-	return (write_pointer buffer, ind, length, width, flags,
-	padd, extra_c, padd_start);
+	return (write_pointer(buffer, ind, length, width, flags,
+	padd, extra_c, padd_start));
 }
 
 /******************** PRINT NON PRINTABLE *******************/
