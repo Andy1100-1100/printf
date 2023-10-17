@@ -131,21 +131,20 @@ int prec, int length, char padd, char extra_c)
 	}
 	else if (!(flags & F_MINUS) && padd == ' ')
 	{
-	if (extra_c)
-	buffer[--ind] = extra_c;
-	return (write(1, &buffer[1], i - 1) + write(1, &buffer[ind], length));
+		if (extra_c)
+			buffer[--ind] = extra_c;
+		return (write(1, &buffer[1], i - 1) + write(1, &buffer[ind], length));
 	}
 	else if (!(flags & F_MINUS) && padd == '0')
 	{
-	if (extra_c)
-	buffer[--padd_start] = extra_c;
-	return (write(1, &buffer[padd_start], i - padd_start) +
-	write(1, &buffer[ind], length - (1 - padd_start)));
+		if (extra_c)
+			buffer[--padd_start] = extra_c;
+		return (write(1, &buffer[padd_start], i - padd_start) +
+				write(1, &buffer[ind], length - (1 - padd_start)));
 		}
 	}
-
 	if (extra_c)
-	buffer[--ind] = extra_c;
+		buffer[--ind] = extra_c;
 	return (write(1, &buffer[ind], length));
 }
 
