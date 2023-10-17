@@ -1,0 +1,7 @@
+#Ignore files created by text editors
+*.swp
+*.swo
+*.swn
+*.swl
+#Ignore
+main.c
