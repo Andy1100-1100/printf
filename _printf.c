@@ -1,6 +1,6 @@
 #include "main.h"
 
-void t_print_buffer(char buffer[], int *buff_ind);
+void print_buffer(char buffer[], int *buff_ind);
 
 /**
  * _printf - Print function that produces
@@ -99,7 +99,6 @@ int _printf(const char *format, ...)
  */
 
 void print_buffer(char buffer[], int *buff_ind)
-
 {
 
 	if (*buff_ind > 0)
